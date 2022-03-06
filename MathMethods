@@ -1,0 +1,264 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+* This program allows the user to enter a number and apply 7 different Math Methods to it.
+* 
+* modified     2022-03-03
+* date         2022-03-03
+* @filename    
+* @author      Aparna Kagini - Team 3
+* @version     1.0
+* @see         ICS4U1 Activity 1.6
+*/
+
+public class MathMethods extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtNumber;
+	private JLabel lblAnswer;
+	private double num;
+	private boolean robust;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MathMethods frame = new MathMethods();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MathMethods() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 448, 400);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblAnswer = new JLabel("--");
+		
+		JLabel lblMathMethods = new JLabel("Math Methods");
+		lblMathMethods.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMathMethods.setForeground(new Color(0, 128, 128));
+		lblMathMethods.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 22));
+		lblMathMethods.setBounds(115, 11, 190, 31);
+		contentPane.add(lblMathMethods);
+		
+		txtNumber = new JTextField();
+		txtNumber.setBounds(254, 53, 86, 20);
+		contentPane.add(txtNumber);
+		txtNumber.setColumns(10);
+	
+		JButton btnMethodOne = new JButton("SquareRoot");
+		btnMethodOne.setBounds(43, 220, 128, 23);
+		contentPane.add(btnMethodOne);
+		
+		JButton btnMethodTwo = new JButton("Round");
+		btnMethodTwo.setBounds(305, 120, 89, 23);
+		contentPane.add(btnMethodTwo);
+		
+		JButton btnMethodThree = new JButton("Abs");
+		btnMethodThree.setBounds(43, 169, 89, 23);
+		contentPane.add(btnMethodThree);
+		
+		JButton btnMethodFour = new JButton("Floor");
+		btnMethodFour.setBounds(305, 169, 89, 23);
+		contentPane.add(btnMethodFour);
+		
+		JButton btnMethodFive = new JButton("Ceil");
+		btnMethodFive.setBounds(43, 120, 89, 23);
+		contentPane.add(btnMethodFive);
+		
+		JButton btnMethodSix = new JButton("addFive");
+		btnMethodSix.setBounds(305, 220, 89, 23);
+		contentPane.add(btnMethodSix);
+		
+		JButton btnMethodSeven = new JButton("multiplyFive");
+		btnMethodSeven.setBounds(305, 276, 111, 23);
+		contentPane.add(btnMethodSeven);
+		
+		JLabel lblNumberInsert = new JLabel("Please input a number:");
+		lblNumberInsert.setBounds(95, 56, 149, 14);
+		contentPane.add(lblNumberInsert);
+		
+		JButton btnNewButton = new JButton("Exit");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		btnNewButton.setBackground(new Color(240, 128, 128));
+		btnNewButton.setForeground(new Color(220, 20, 60));
+		btnNewButton.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnNewButton.setBounds(168, 318, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblAnswer = new JLabel("---");
+		lblAnswer.setVerticalAlignment(SwingConstants.TOP);
+		lblAnswer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAnswer.setBackground(new Color(65, 105, 225));
+		lblAnswer.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		lblAnswer.setBounds(10, 278, 169, 21);
+		contentPane.add(lblAnswer);
+		
+		btnMethodOne.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText(String.valueOf(Math.sqrt(Double.parseDouble(txtNumber.getText()))));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+			}
+		});
+		
+		btnMethodTwo.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText(String.valueOf(Math.round(Double.parseDouble(txtNumber.getText()))));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+			}
+		});
+		
+		btnMethodThree.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText(String.valueOf(Math.abs(Double.parseDouble(txtNumber.getText()))));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+			}
+		});
+		
+		btnMethodFour.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText(String.valueOf(Math.floor(Double.parseDouble(txtNumber.getText()))));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+			}
+		});
+		
+		
+		btnMethodFive.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText(String.valueOf(Math.ceil(Double.parseDouble(txtNumber.getText()))));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+			}
+		});
+		
+		btnMethodSix.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					num = (Double.parseDouble(txtNumber.getText()));
+					addFive();
+					lblAnswer.setText(String.valueOf(num));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+				
+			}
+		});
+		
+		
+		btnMethodSeven.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				robustCheck();
+				if(robust) {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText(String.valueOf(multiplyFive(Double.parseDouble(txtNumber.getText()))));
+				}
+				else {
+					lblAnswer.setBounds(39, 280, 343, 14);
+					contentPane.add(lblAnswer);
+					lblAnswer.setText("Please input numbers only.");
+				}
+			}
+		});
+		
+	}
+	
+	public void addFive(){
+		num = num + 5;
+	}
+	public double multiplyFive(double y) {
+		y = y * 5.0;
+		return y;
+	}
+	public void robustCheck() {
+		robust = true;
+		try {
+			Double.parseDouble(txtNumber.getText());
+		}
+		catch(Exception E) {
+			robust = false;
+		}
+	}
+}
