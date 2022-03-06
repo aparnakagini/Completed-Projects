@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package kagini_datavalidation;
+import java.util.Scanner;
+/**
+ *
+ * @author aparna kagini
+ */
+public class Kagini_DataValidation {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner keyedInput = new Scanner (System.in);
+
+    // declaring variables needed in our program
+    String answer1, answer2, answer3;
+    int answer4, answer5, answer6;
+
+
+    System.out.println("Please enter a string that is greater than 6 characters long: ");
+    answer1 = keyedInput.nextLine();
+
+    while (answer1.length() <= 6)
+    {
+      System.out.println("Sorry, that was an invalid answer. Please enter a string that is greater than 6 characters long: ");
+      answer1 = keyedInput.nextLine();
+    }
+
+    System.out.println("Please enter a string that contains atleast one lowercase 'a': ");
+    answer2 = keyedInput.nextLine();
+
+    while (!answer2.contains("a"))
+    {
+      System.out.println("Sorry, that was an invalid answer. Please enter a string that contains atleast one lowercase 'a': ");
+      answer2 = keyedInput.nextLine();
+    }
+
+    System.out.println("Please enter a string that is between 5 and 15 characters long and does not contain the letter 'z': ");
+    answer3 = keyedInput.nextLine();
+
+    while (answer3.length() < 5 || answer3.length() > 15 || answer3.contains("z"))
+    {
+      System.out.println("Sorry, that was an invalid answer. Please enter a string that is between 5 and 15 characters long and does not contain the letter 'z': ");
+      answer3 = keyedInput.nextLine();
+    }
+
+    System.out.println("Please enter an integer between 5 and 500: ");
+    answer4 = keyedInput.nextInt();
+
+    while (answer4 < 5 || answer4 > 500)
+    {
+      System.out.println("Sorry, that was an invalid answer. Please enter an integer between 5 and 500: ");
+      answer4 = keyedInput.nextInt();
+    }
+
+    System.out.println("Please enter a negative integer: ");
+    answer5 = keyedInput.nextInt();
+
+    while (answer5 >= 0)
+    {
+      System.out.println("Sorry, that was an invalid input. Please enter a negative integer: ");
+      answer5 = keyedInput.nextInt();
+    }
+
+  }
+}
