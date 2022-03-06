@@ -19,9 +19,9 @@ import java.awt.event.ActionEvent;
 * modified     2022-03-03
 * date         2022-03-03
 * @filename    
-* @author      Aparna Kagini - Team 3
+* @author      Aparna Kagini 
 * @version     1.0
-* @see         ICS4U1 Activity 1.6
+* @see         ICS4U1 
 */
 
 public class MathMethods extends JFrame {
