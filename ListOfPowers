@@ -1,0 +1,149 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.Caret;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+
+@SuppressWarnings("serial")
+
+/**
+* This program allows the user to enter in a base and exponent between 1-10 and displays the list of powers with the inputed base and exponent values.
+* 
+* modified     2022-03-03
+* date         2022-03-03
+* @filename    
+* @author      Aparna Kagini
+* @version     1.0
+* @see         ICS4U1
+*/
+
+public class ListOfPowers extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtBase;
+	private JTextField txtExponent;
+
+	private JTextArea textArea;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ListOfPowers frame = new ListOfPowers();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ListOfPowers() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 647, 423);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblPowers = new JLabel("Power!");
+		lblPowers.setForeground(new Color(255, 140, 0));
+		lblPowers.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 30));
+		lblPowers.setBounds(265, 11, 120, 58);
+		contentPane.add(lblPowers);
+		
+		JLabel lblBase = new JLabel("Enter the base:");
+		lblBase.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblBase.setBounds(41, 105, 120, 14);
+		contentPane.add(lblBase);
+		
+		JLabel lblExponent = new JLabel("Enter the exponent:");
+		lblExponent.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblExponent.setBounds(41, 149, 120, 14);
+		contentPane.add(lblExponent);
+		
+		txtBase = new JTextField();
+		txtBase.setBounds(279, 103, 96, 20);
+		contentPane.add(txtBase);
+		txtBase.setColumns(10);
+		
+		txtExponent = new JTextField();
+		txtExponent.setBounds(279, 147, 96, 20);
+		contentPane.add(txtExponent);
+		txtExponent.setColumns(10);
+		
+		JButton btnCalculate = new JButton("Calculate");
+		btnCalculate.addActionListener(new ActionListener() {
+		
+			public void actionPerformed(ActionEvent e) {
+
+				Double baseIn = 0.0, exponentIn = 0.0;
+				boolean correctInput = true;
+				
+				// verifies that user input is a number or not
+				try {
+					baseIn = Double.parseDouble(txtBase.getText());
+					exponentIn = Double.parseDouble(txtExponent.getText());
+				}
+				catch (NumberFormatException ex)
+				{
+					correctInput = false;
+					textArea.setText("Invalid input. Please input numbers between 1-10 only." + "\n");
+				}
+				
+				// calculates and displays list of powers if base and exponent value conditions are met 
+				for (int i = 1; i <= exponentIn; i++)
+				{
+					if ((baseIn >= 1.0) && (baseIn <= 10.0) && (exponentIn >= 1.0) && (exponentIn <=10.0))
+					{
+						textArea.append(String.valueOf(baseIn) + " to the exponent " + String.valueOf(i) + " = " + String.valueOf(Math.pow(baseIn, i)) + "." + "\n");
+					}
+					
+					else
+					{
+						correctInput = false;
+						textArea.setText("Invalid input. Base and exponent values must be between 1-10." + "\n");
+						break;
+					}
+				}
+			}}
+		);
+		
+		btnCalculate.setForeground(new Color(0, 0, 128));
+		btnCalculate.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCalculate.setBounds(473, 106, 89, 23); 
+		contentPane.add(btnCalculate);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);   // exit the application
+			}
+		});
+		btnExit.setForeground(new Color(255, 0, 0));
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnExit.setBounds(473, 140, 89, 23);
+		contentPane.add(btnExit);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(41, 201, 388, 174);
+		contentPane.add(textArea);
+
+	}
+}
